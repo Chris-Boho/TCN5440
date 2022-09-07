@@ -27,4 +27,29 @@ int main(){
 	printf("b = %d\n", b);
 
 	printf("--------------------------\n");
+
+	int x = 4;
+
+	printf("Initial x value: %d\n", x);
+	x = ~x;
+	printf("Compliment x value: %d\n", x);
+
+	printf("--------------------------\n");
+
+	int z = 1024;
+	printf("Initial Value: %d\n", z);
+	while(z != 0){
+		z = z >> 1;
+		printf("New Value: %d\n", z);
+	}
+
+	printf("--------------------------\n");
+
+	for(int b = 1; b <= 1024; b=b<<1 ){
+		printf("Value: %d\n", b);
+	}
+
+	printf("--------------------------\n");
+
+
 }
