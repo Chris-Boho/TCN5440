@@ -7,6 +7,11 @@
 
 int numSeconds(int hours, int minutes, int seconds);
 
+//ADD STRUCTS AND ENUMS IN SEPARATE HEADER FILE
+//4 files expected
+//readme, makefile, .c file, .h file
+//add guards 
+
 struct time timeDif(struct time time1, struct time time2);
 
 enum month { January = 1, February, March, April, May, June, 
