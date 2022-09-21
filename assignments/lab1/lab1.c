@@ -1,36 +1,15 @@
 #include <stdio.h>
+#include "myHeader.h"
 
 #define SECONDS_IN_A_MINUTE 60
 #define MINUTES_IN_A_HOUR 60
 
 #define TRACE __LINE__
 
-int numSeconds(int hours, int minutes, int seconds);
-
 //ADD STRUCTS AND ENUMS IN SEPARATE HEADER FILE
 //4 files expected
 //readme, makefile, .c file, .h file
 //add guards 
-
-struct time timeDif(struct time time1, struct time time2);
-
-enum month { January = 1, February, March, April, May, June, 
-        July, August, September, October, November, December };
-
-struct time {
-	int Hours;
-	int Minutes;
-	int Seconds;
-};
-
-struct DateTime
-{
-	struct time tempTime;
-	enum month tempMonth;
-	int day;
-	int year;
-};
-
 
 int main() {
 	struct time t1 = {
