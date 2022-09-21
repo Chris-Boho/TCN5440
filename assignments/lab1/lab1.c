@@ -9,29 +9,98 @@ int numSeconds(int hours, int minutes, int seconds);
 
 struct time timeDif(struct time time1, struct time time2);
 
+enum month { January = 1, February, March, April, May, June, 
+        July, August, September, October, November, December };
+
 struct time {
 	int Hours;
 	int Minutes;
 	int Seconds;
 };
 
+struct DateTime
+{
+	struct time tempTime;
+	enum month tempMonth;
+	int day;
+	int year;
+};
+
+
 int main() {
 	struct time t1 = {
-		.Hours = 3,
-		.Minutes = 45,
-		.Seconds = 15
+		.Hours = 1,
+		.Minutes = 30,
+		.Seconds = 45
 	};
 
 	struct time t2 = {
-		.Hours = 9,
-		.Minutes = 44,
-		.Seconds = 3
+		.Hours = 16,
+		.Minutes = 30,
+		.Seconds = 45
 	};
 
-	printf("Total Seconds: %d\n", numSeconds(t2.Hours, t2.Minutes, t2.Seconds) );
+	struct time t3 = {
+		.Hours = 0,
+		.Minutes = 1,
+		.Seconds = 1
+	};
+	
+	struct time t4 = {
+		.Hours = 23,
+		.Minutes = 59,
+		.Seconds = 59
+	};
+
+	struct time t5 = {
+		.Hours = 12,
+		.Minutes = 0,
+		.Seconds = 0
+	};
+
+	struct time t6 = {
+		.Hours = 12,
+		.Minutes = 0,
+		.Seconds = 0
+	};
+
+	struct DateTime dt1 = {
+		.tempTime = {
+			.Hours = 12,
+			.Minutes = 01,
+			.Seconds = 0
+		},
+		.tempMonth = January,
+		.day = 19,
+		.year = 1809
+	};
+
+	struct DateTime dt2 = {
+		.tempTime = {
+			.Hours = 6,
+			.Minutes = 0,
+			.Seconds = 0
+		},
+		.tempMonth = November,
+		.day = 11,
+		.year = 1922
+	};
+
+	struct DateTime dt3 = {
+		.tempTime = {
+			.Hours = 8,
+			.Minutes = 22,
+			.Seconds = 0
+		},
+		.tempMonth = January,
+		.day = 6,
+		.year = 2000
+	};
+
 
 	struct time Result = timeDif(t1, t2);
 	printf("Result Time: %d:%d:%d\n", Result.Hours, Result.Minutes), Result.Seconds;
+	printf("Date Time: %d/%d/%d %02d:%02d\n", dt1.tempMonth, dt1.day, dt1.year, dt1.tempTime.Hours, dt1.tempTime.Minutes);
 
 	return 0;
 }
