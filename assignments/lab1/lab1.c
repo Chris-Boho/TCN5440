@@ -82,9 +82,18 @@ int main() {
 	};
 
 
-	struct time Result = timeDif(t1, t2);
-	printf("Result Time: %d:%d:%d\n", Result.Hours, Result.Minutes), Result.Seconds;
-	printf("Date Time: %d/%d/%d %02d:%02d\n", dt1.tempMonth, dt1.day, dt1.year, dt1.tempTime.Hours, dt1.tempTime.Minutes);
+	struct time Result1 = timeDif(t1, t2);
+	struct time Result2 = timeDif(t3, t4);
+	struct time Result3 = timeDif(t5, t6);
+
+	printf("Result 1 Time Elapsed: %02d:%02d:%02d\n", Result1.Hours, Result1.Minutes, Result1.Seconds);
+	printf("Result 2 Time Elapsed: %02d:%02d:%02d\n", Result2.Hours, Result2.Minutes, Result2.Seconds);
+	printf("Result 3 Time Elapsed: %02d:%02d:%02d\n", Result3.Hours, Result3.Minutes, Result3.Seconds);
+
+	printf("Date Time 1: %d/%d/%d %d:%02d\n", dt1.tempMonth, dt1.day, dt1.year, dt1.tempTime.Hours, dt1.tempTime.Minutes);
+	printf("Date Time 2: %d/%d/%d %d:%02d\n", dt2.tempMonth, dt2.day, dt2.year, dt2.tempTime.Hours, dt2.tempTime.Minutes);
+	printf("Date Time 3: %d/%d/%d %d:%02d\n", dt3.tempMonth, dt3.day, dt3.year, dt3.tempTime.Hours, dt3.tempTime.Minutes);
+
 
 	return 0;
 }
