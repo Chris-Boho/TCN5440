@@ -6,11 +6,6 @@
 
 #define TRACE __LINE__
 
-//ADD STRUCTS AND ENUMS IN SEPARATE HEADER FILE
-//4 files expected
-//readme, makefile, .c file, .h file
-//add guards 
-
 int main() {
 	struct time t1 = {
 		.Hours = 1,
