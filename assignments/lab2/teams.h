@@ -1,6 +1,3 @@
-// #ifdef TEAMS_H
-// #define TEAMS_H
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,5 +8,3 @@ struct Team
 };
 
 typedef struct Team Team;
-
-// #endif

@@ -4,6 +4,8 @@
 #include <string.h>
 #include "teams.h"
 
+//two teams are randomly assigned scores and only one can win
+//if there is a tie, a random team is given an extra point
 Team* game(Team* blue_team, Team* red_team){
 
     int blue_score = 0;
@@ -43,7 +45,9 @@ Team* game(Team* blue_team, Team* red_team){
     }
 }
 
+//tournament functions accepts an array of team pointers
 Team* tournament(Team* league_arr[]){
+    //create a Team pointer array that accepts the winner of a 'game'
     Team* round_1[4] = {
         game(league_arr[0], league_arr[1]),
         game(league_arr[2], league_arr[3]),
@@ -51,6 +55,7 @@ Team* tournament(Team* league_arr[]){
         game(league_arr[6], league_arr[7]),
     };
 
+    //there is a fixed amount of teams and winners, so no need to find array length
     printf("----------------------\nWINNERS OF ROUND 1: \n");
     for (int i = 0; i < 4; i++)
         printf("%s\n", round_1[i]->team_name);
@@ -78,6 +83,8 @@ Team* tournament(Team* league_arr[]){
 
 int main(){
 
+    //create 8 teams and fill their information
+    //create pointers to the different teams
     Team team0;
     strcpy(team0.team_name, "First_Team");
     team0.handicap = 1;
@@ -118,8 +125,10 @@ int main(){
     team7.handicap = 8;
     Team* ptr_7 = &team7;
 
+    //array of pointers to teams
     Team* league[8] = {ptr_0, ptr_1, ptr_2, ptr_3, ptr_4, ptr_5, ptr_6, ptr_7};
 
+    //create a seed 
     srand(time(NULL));
 
     tournament(league);
