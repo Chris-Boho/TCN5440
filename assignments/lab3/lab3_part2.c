@@ -48,9 +48,7 @@ Node* indexInsert(List* list, int index, int data){
 		}else{
 			printf("Out of bounds!\n");
 			return NULL;
-		}
-			
-		
+		}	
 	}
 	
 	return new;
@@ -88,6 +86,38 @@ void listRandInsert(List* list, int amount){
 	
 }
 
+int myRemove(List* list, int index){
+	if (list == NULL)
+	{
+		printf("List is empty!\n");
+		return 0;
+	}
+	
+	int count = 0;
+	Node* current = list->first;
+	Node* prev = NULL; 
+			
+	if (current == NULL && index == 0)
+	{
+		printf("Out of bounds!\n");
+		return 0;
+	} else {
+		while (current->next != NULL && count != index) {
+			prev = current;
+            current = current->next;
+			count++;
+        }
+		if (count == index){
+			prev->next = current->next;
+		}else{
+			printf("Out of bounds!\n");
+			return 0;
+		}	
+	}
+	
+	return 0;
+}
+
 // void clearList(List* list){
 // 	free(list);
 // 	list = NULL; //idk if this is necessary... check later
@@ -110,9 +140,7 @@ int main(){
 	srand(time(NULL));
 
 	List* derp = createList();
-	listRandInsert(derp, 5);
-	indexInsert(derp, 8, 124);
-
+	listRandInsert(derp, 10);
 	printList(derp);
 
 	return 0;
