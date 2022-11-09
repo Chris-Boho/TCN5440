@@ -71,8 +71,9 @@ void printTrain(Train* myTrain){
 
 
 int main(){
-    Train* temp = createTrain(3);
-    printTrain(temp);
-    clearTrain(temp);
+    Train* test_train = createTrain(3);
+    printTrain(test_train);
+    clearTrain(test_train);
+    free(test_train);
     return 0;
 }

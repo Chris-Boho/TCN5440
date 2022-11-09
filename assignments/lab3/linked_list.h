@@ -1,8 +1,8 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
 struct Node 
 {
@@ -21,13 +21,28 @@ struct List
 
 typedef struct List List;
 
+struct Stack
+{
+    Node* top;
+};
+
+typedef struct Stack Stack;
+
+struct Queue
+{
+    Node* front;
+    Node* back;
+};
+
+typedef struct Queue Queue;
+
 Node* createNode(int data);
 
 List* createList();
 
 Node* front(List* list);
 
-// void clearList(List* list);
+void clearList(List* list);
 
 void printList(List* list);
 
@@ -42,6 +57,26 @@ int myRemove(List* list, int index);
 void searchForward(List* list, int value);
 
 void searchBackward(List* list, int value);
+
+
+
+Stack* createStack();
+
+void printStack(Stack* stack);
+
+void push(Stack* stack, int value);
+
+int pop(Stack* stack);
+
+
+
+Queue* createQueue();
+
+void printQueue(Queue* queue);
+
+void enqueue(Queue* queue, int vlaue);
+
+int dequeue(Queue* queue);
 
 #endif // !LINKEDLIST_H
 

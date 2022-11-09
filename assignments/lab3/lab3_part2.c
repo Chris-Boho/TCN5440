@@ -198,6 +198,17 @@ void clearList(List* list){
 	list->first = NULL;
 	list = NULL;
     printf("EMPTIED LIST!\n");
+
+	// Node* current = list->first;
+	// while (current != NULL)
+	// {
+	// 	Node* next = current->next;
+	// 	free(current);
+	// 	current = NULL;
+	// 	current = next;
+	// }
+	
+	// printf("EMPTIED LIST!\n");
 }
 
 void printList(List *list) {
@@ -236,18 +247,21 @@ int main(){
 	List* test_list = createList();
 	listRandInsert(test_list, 10);
 	printList(test_list);
-	// printListBackwards(test_list);
-	printf("------------------------\n");
+	printListBackwards(test_list);
+	// printf("------------------------\n");
 
-	printf("Enter a value to search: \n");
-	scanf("%d", &search_value);
+	// printf("Enter a value to search: \n");
+	// scanf("%d", &search_value);
 	
-	searchForward(test_list, search_value);
-	searchBackward(test_list, search_value);
+	// searchForward(test_list, search_value);
+	// searchBackward(test_list, search_value);
 
 	printf("------------------------\n");
 	clearList(test_list);
-	printList(test_list);
+	// printList(test_list);
+
+	// free(test_list);
+	// test_list = NULL;
 
 	return 0;
 }
