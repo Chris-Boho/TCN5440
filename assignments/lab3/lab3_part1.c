@@ -1,35 +1,78 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "linked_list.h"
+#include "train.h"
 
-Node* createNode(int data){
-	Node* temp = malloc(sizeof(Node));
-	temp->data = data;
-	temp->next = NULL;
-	return temp;
+Train* createTrain(int length){
+    Train* myTrain = NULL;
+    Car* last = NULL;
+    int weight;
+    for(int i = 0; i < length; i++){
+        if(myTrain == NULL){
+            myTrain = malloc(sizeof(Train));
+            myTrain->first = malloc(sizeof(Car));
+            last = myTrain->first;
+        } else {
+            last->next = malloc(sizeof(Car));
+            last = last->next;
+        }
+
+        do
+        {
+            printf("Input the weight of car #%d: ", i + 1);
+            scanf("%d", &weight);
+
+            if (weight == 1 || weight == 0)
+                break;
+            printf("Weight must be 0 or 1!\n");
+            
+        } while (1);
+        
+        last->cargo_weight = weight;
+        last->next = NULL;
+    }
+
+    return myTrain;
 }
 
-List* createList(){
-	List* temp = malloc(sizeof(List));
-	temp->first = NULL;
-	return temp;
+void clearTrain(Train* myTrain){
+    if (myTrain == NULL){
+        printf("This train is empty!\n");
+        return;
+    }
+
+    Car* current = myTrain->first;
+    Car* temp; 
+    while (current != NULL)
+    {
+        temp = current;
+        current = current->next;
+        free(temp);
+    }
+
+    printf("NULL\n");
 }
 
-void clearList(List* list){
-	free(list);
-	list = NULL; //idk if this is necessary... check later
+void printTrain(Train* myTrain){
+    if (myTrain == NULL){
+        printf("This train is empty!\n");
+        return;
+    }
+
+    Car* current = myTrain->first;
+    while (current != NULL)
+    {
+        printf("%d -> \n", current->cargo_weight);
+        printf("mem: %d\n", &current);
+        current = current->next;
+    }
+
+    printf("NULL\n");
 }
 
-void printList(List* list){
-	if(list == NULL){
-		printf("List is empty\n");
-		return;
-	}
-
-	Node* current = list->first;
-}
 
 int main(){
-
-	return 0;
+    Train* temp = createTrain(3);
+    printTrain(temp);
+    clearTrain(temp);
+    return 0;
 }

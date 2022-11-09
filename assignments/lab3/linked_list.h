@@ -23,13 +23,19 @@ Node* createNode(int data);
 
 List* createList();
 
-void clearList(List* list);
+Node* front(List* list);
+
+// void clearList(List* list);
 
 void printList(List* list);
+
+Node* indexInsert(List* list, int index, int data);
 
 void listInsert(List* list, int data);
 
 void listRandInsert(List* list, int amount);
+
+int myRemove(List* list, int index);
 
 #endif // !LINKEDLIST_H
 
