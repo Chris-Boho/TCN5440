@@ -16,6 +16,8 @@ Stack* createStack(){
 	return temp;
 }
 
+
+//Creates a node and adds it to the top of the stack
 void push(Stack* stack, int value){
 	Node* current = stack->top;
 	Node* new = createNode(value);
@@ -24,6 +26,7 @@ void push(Stack* stack, int value){
 	stack->top = new;
 }
 
+//Removes node at the top of the stack and prints it out
 int pop(Stack* stack){
 
 	if (stack->top == NULL)
@@ -41,6 +44,19 @@ int pop(Stack* stack){
 
 }
 
+//prints stack, used to see if everything was connected properly
+void printStack(Stack* stack){
+	Node* current = stack->top;
+
+	while (current != NULL)
+	{
+		printf("%d -> ", current->data);
+		current = current->next;
+	}
+
+	printf("NULL\n");
+}
+
 Queue* createQueue(){
 	Queue* temp = malloc(sizeof(Queue));
 	temp->front = NULL;
@@ -48,6 +64,7 @@ Queue* createQueue(){
 	return temp;
 }
 
+//creates node and add its to the back of the line
 void enqueue(Queue* queue, int value){
 	Node* new = createNode(value);
 
@@ -62,6 +79,7 @@ void enqueue(Queue* queue, int value){
 	}
 }
 
+//removes node from the front of the line and prints it
 int dequeue(Queue* queue){
 
 	if (queue->front == NULL)
@@ -85,18 +103,6 @@ int dequeue(Queue* queue){
 	
 }
 
-void printStack(Stack* stack){
-	Node* current = stack->top;
-
-	while (current != NULL)
-	{
-		printf("%d -> ", current->data);
-		current = current->next;
-	}
-
-	printf("NULL\n");
-}
-
 int main(){
 
 	int input_val = 0;
@@ -104,8 +110,8 @@ int main(){
 	for (int i = 0; i < 5; i++)
 	{
 		printf("Push # to the Stack: \n");
-		// scanf("%d", &input_val);
-		push(test_stack, i);
+		scanf("%d", &input_val);
+		push(test_stack, input_val);
 	}
 
 	printf("---------\n");
@@ -125,8 +131,8 @@ int main(){
 	for (int i = 0; i < 5; i++)
 	{
 		printf("Enqueue # into Queue: \n");
-		// scanf("%d", &input_val);
-		enqueue(test_queue, i);
+		scanf("%d", &input_val);
+		enqueue(test_queue, input_val);
 	}
 
 	printf("---------\n");
@@ -139,9 +145,6 @@ int main(){
 
 	free(test_queue);
 	test_queue = NULL;
-
-	//valgrind --leak-check=yes ./lab3_part3.o
-	//CHECK FOR MEMORY LEAKS
 
 	return 0;
 }

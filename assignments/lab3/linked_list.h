@@ -36,11 +36,15 @@ struct Queue
 
 typedef struct Queue Queue;
 
+
+
 Node* createNode(int data);
 
-List* createList();
-
 Node* front(List* list);
+
+
+
+List* createList();
 
 void clearList(List* list);
 

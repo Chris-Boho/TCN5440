@@ -3,6 +3,7 @@
 #include <time.h>
 #include "linked_list.h"
 
+//Doubly linked list needs a node pointer to the next node and the previous node
 Node* createNode(int data){
 	Node* temp = malloc(sizeof(Node));
 	temp->data = data;
@@ -11,6 +12,7 @@ Node* createNode(int data){
 	return temp;
 }
 
+//List that has node pointers to the first and last nodes
 List* createList(){
 	List* temp = malloc(sizeof(List));
 	temp->first = NULL;
@@ -22,6 +24,7 @@ Node* front(List* list){
 	return list->first;
 }
 
+//Insert data at a certain index in the list
 Node* indexInsert(List* list, int index, int data){
 
 	if (list == NULL)
@@ -35,26 +38,34 @@ Node* indexInsert(List* list, int index, int data){
 	Node* current = list->first;
 	Node* previous; 
 			
+	//If the first NULL, create a node with data
 	if (current == NULL)
 	{
 		list->first = createNode(data);
 	} else {
+		//Iterate till the end of the list or count reaches the desired index
+		//Whichever comes first
 		while (current->next != NULL && count != index) {
 			previous = current;
             current = current->next;
 			count++;
         }
+		//insert at the first index
 		if (index == 0 && count == 0)
 		{
 			list->first = new;
 			new->next = current;
-			new->prev = NULL;
-		}else if(count == index){
+			new->prev = NULL;	
+		}
+		//insert at any index other than the first
+		else if(count == index){
 			previous->next = new;
 			new->prev = previous;
 			new->next = current;
 			current->prev = new;
-		}else{
+		}
+		//Iteration reach the end of list before the desired index
+		else{
 			printf("Out of bounds!\n");
 			return NULL;
 		}	
@@ -63,6 +74,7 @@ Node* indexInsert(List* list, int index, int data){
 	return new;
 }
 
+//insert at the end of the list
 void listInsert(List *list, int data) {
     if (list == NULL) {
         printf("listInsert: List is empty.\n");
@@ -84,6 +96,7 @@ void listInsert(List *list, int data) {
     }
 }
 
+//fill the list with random numbers till desired length
 void listRandInsert(List* list, int amount){
 
 	if (list == NULL)
@@ -100,6 +113,7 @@ void listRandInsert(List* list, int amount){
 	
 }
 
+//remove specified index from list
 int myRemove(List* list, int index){
 	if (list == NULL)
 	{
@@ -138,6 +152,7 @@ int myRemove(List* list, int index){
 	return 0;
 }
 	
+//iterate forward through list while comparing data and counting steps
 void searchForward(List* list, int value){
 	if (list == NULL) {
         printf("List is empty.\n");
@@ -158,6 +173,7 @@ void searchForward(List* list, int value){
     printf("The Value was not found!\n");
 }
 
+//iterate forward through list while comparing data and counting steps
 void searchBackward(List* list, int value){
 	if (list == NULL) {
         printf("List is empty.\n");
@@ -178,6 +194,8 @@ void searchBackward(List* list, int value){
     printf("The Value was not found!\n");
 }
 
+//empties list nodes
+//it doesnt not pass valgrind, but i couldn't fix it
 void clearList(List* list){
 	if (list == NULL) {
         printf("List is empty.\n");
@@ -190,25 +208,14 @@ void clearList(List* list){
 		free(current);
 		current = neighbor;
     }
-
+	free(current);
 	current = NULL;
 	free(neighbor);
 	neighbor = NULL;
 	free(list);
 	list->first = NULL;
 	list = NULL;
-    printf("EMPTIED LIST!\n");
-
-	// Node* current = list->first;
-	// while (current != NULL)
-	// {
-	// 	Node* next = current->next;
-	// 	free(current);
-	// 	current = NULL;
-	// 	current = next;
-	// }
-	
-	// printf("EMPTIED LIST!\n");
+    printf("List has been Emptied.\n");
 }
 
 void printList(List *list) {
@@ -227,6 +234,7 @@ void printList(List *list) {
     printf("NULL\n");
 }
 
+//used to verift if the prev nodes were working
 void printListBackwards(List *list) {
     if (list == NULL) {
         printf("List is empty.\n");
@@ -247,21 +255,17 @@ int main(){
 	List* test_list = createList();
 	listRandInsert(test_list, 10);
 	printList(test_list);
-	printListBackwards(test_list);
-	// printf("------------------------\n");
+	printf("------------------------\n");
 
-	// printf("Enter a value to search: \n");
-	// scanf("%d", &search_value);
+	printf("Enter a value to search: \n");
+	scanf("%d", &search_value);
 	
-	// searchForward(test_list, search_value);
-	// searchBackward(test_list, search_value);
+	searchForward(test_list, search_value);
+	searchBackward(test_list, search_value);
 
 	printf("------------------------\n");
 	clearList(test_list);
-	// printList(test_list);
-
-	// free(test_list);
-	// test_list = NULL;
+	printList(test_list);
 
 	return 0;
 }

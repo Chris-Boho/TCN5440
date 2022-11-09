@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "train.h"
 
+//Creates train based on user specified length
 Train* createTrain(int length){
     Train* myTrain = NULL;
     Car* last = NULL;
@@ -16,9 +17,10 @@ Train* createTrain(int length){
             last = last->next;
         }
 
+        //Repeat if user tries to enter a value other an 1 or 0
         do
         {
-            printf("Input the weight of car #%d: ", i + 1);
+            printf("Input the Weight of Car #%d: ", i + 1);
             scanf("%d", &weight);
 
             if (weight == 1 || weight == 0)
@@ -34,6 +36,7 @@ Train* createTrain(int length){
     return myTrain;
 }
 
+//Goes through each node, one by one and free's them
 void clearTrain(Train* myTrain){
     if (myTrain == NULL){
         printf("This train is empty!\n");
@@ -48,10 +51,9 @@ void clearTrain(Train* myTrain){
         current = current->next;
         free(temp);
     }
-
-    printf("NULL\n");
 }
 
+//Goes through nodes and prints weight and memory locations neatly
 void printTrain(Train* myTrain){
     if (myTrain == NULL){
         printf("This train is empty!\n");
@@ -61,8 +63,16 @@ void printTrain(Train* myTrain){
     Car* current = myTrain->first;
     while (current != NULL)
     {
-        printf("%d -> \n", current->cargo_weight);
-        printf("mem: %d\n", &current);
+        printf("%d -> ", current->cargo_weight);
+        current = current->next;
+    }
+
+    printf("NULL\n");
+
+    current = myTrain->first;
+    while (current != NULL)
+    {
+        printf("%p -> ", current);
         current = current->next;
     }
 
@@ -71,7 +81,11 @@ void printTrain(Train* myTrain){
 
 
 int main(){
-    Train* test_train = createTrain(3);
+    int train_length = 0;
+    printf("Input # of Cars in the Train: ");
+    scanf("%d", &train_length);
+
+    Train* test_train = createTrain(train_length);
     printTrain(test_train);
     clearTrain(test_train);
     free(test_train);
